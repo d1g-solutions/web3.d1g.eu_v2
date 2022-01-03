@@ -1,2 +1,2 @@
-# web3.d1g.eu_v2
+# web3.d1g.eu
 Created with CodeSandbox
