@@ -54,9 +54,45 @@ function App() {
       const tokenAddress = "0xf6c034242d0caa628c361a6660cd72c8e419ac62";
       const tokenSymbol = "D1G";
       const tokenDecimals = 18;
-      const tokenImage = "http://placekitten.com/200/300";
+      const tokenImage =
+        "https://ipfs.io/ipfs/QmZ7ZNpQaqdsZP3R63r3hP9bbtSMMevGQWZ1WCaR5q2BsJ";
 
       try {
+        /*
+      const data = [{
+          chainId: '0x38',
+          chainName: 'Binance Smart Chain',
+          nativeCurrency:
+              {
+                  name: 'BNB',
+                  symbol: 'BNB',
+                  decimals: 18
+              },
+          rpcUrls: ['https://bsc-dataseed.binance.org/'],
+          blockExplorerUrls: ['https://bscscan.com/'],
+      }]
+      */
+        const data = [
+          {
+            chainId: "0x61",
+            chainName: "BSC - Testnet",
+            nativeCurrency: {
+              name: "BNB",
+              symbol: "BNB",
+              decimals: 18
+            },
+            rpcUrls: ["https://data-seed-prebsc-1-s1.binance.org:8545/"],
+            blockExplorerUrls: ["https://testnet.bscscan.com/"]
+          }
+        ];
+
+        const tx = await ethereum
+          .request({ method: "wallet_addEthereumChain", params: data })
+          .catch();
+        if (tx) {
+          console.log(tx);
+        }
+
         // wasAdded is a boolean. Like any RPC method, an error may be thrown.
         const wasAdded = await ethereum.request({
           method: "wallet_watchAsset",
